@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sproutling</title>
+<style>
+.button {
+    background-color: #31B5AF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+</style>
+</head>
+<body>
+	<div id="wrapper"><img src="https://nnd.s3.amazonaws.com/upload/1448393930069sproutling_2_952.png"></div>
+	<div id="wrapper">
+
+  <button onclick="openApp()" class="button" >Open App</button>
+    </div>
+<script>
+// DETECTA EL TIPO DE DISPOSITIVO (USER AGENT)
+var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
+    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
+    IS_IOS = IS_IPAD || IS_IPHONE,
+    IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
+	IS_MOBILE = IS_IOS || IS_ANDROID;
+	console.log("IPAD " + IS_IPAD);
+	console.log("IPHONE " + IS_IPHONE);
+	console.log("IOS " + IS_IOS);
+	console.log("ANDROID " + IS_ANDROID);
+	console.log("MOBILE " + IS_MOBILE);
+
+	
+// this.open();
+function openApp() {
+	console.log("open");
+    // If it's not an universal app, use IS_IPAD or IS_IPHONE
+    if (IS_IOS) {
+    	console.log("iOS");
+        window.location = 'Sproutling://';
+        setTimeout(function() {
+            // If the user is still here, open the App Store
+            if (!document.webkitHidden) {
+                // Replace the Apple ID following '/id'
+                window.location = 'https://itunes.apple.com/us/app/sproutling/id1274211317?mt=8';
+            }
+        }, 500);
+    } else if (IS_ANDROID) {
+    	console.log("Android");
+        // Instead of using the actual URL scheme, use 'intent://' for better UX
+       // I USED THE SAME
+        // window.location = 'intent://#Intent;scheme=sproulting;end;';
+         window.location = 'sproutling://';
+         setTimeout(function() {
+            // If the user is still here, open the App Store
+            if (!document.webkitHidden) {
+                // Replace the Apple ID following '/id'
+                window.location = 'market://details?id=com.fisherprice.sproutling';
+            }
+        }, 500);
+    }else{
+    	console.log("Web");
+    	window.location = 'http://fisher-price.mattel.com/shop/en-us/fp/everything-baby/sproutling-sleep-wearable-fnf59';
+    }
+}
+</script>
+
+
+
+
+</body>
+</html>
